@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Shree Ram Super Speciality Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="hospital-logo-small">
+                    <img src="images/logo-small.png" alt="Logo">
+                </div>
+                <h3>Shree Ram<br><small>Super Speciality Hospital</small></h3>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="menu-section">
+                    <a href="dashboard.html" class="menu-item active">
+                        <i class="icon-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">BLOG MANAGEMENT</div>
+                    <a href="all-blogs.html" class="menu-item">
+                        <i class="icon-blogs"></i>
+                        <span>All Blogs</span>
+                    </a>
+                    <a href="add-blog.html" class="menu-item">
+                        <i class="icon-add"></i>
+                        <span>Add New Blog</span>
+                    </a>
+                    <a href="categories.html" class="menu-item">
+                        <i class="icon-category"></i>
+                        <span>Categories</span>
+                    </a>
+                    <a href="tags.html" class="menu-item">
+                        <i class="icon-tag"></i>
+                        <span>Tags</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">MEDIA</div>
+                    <a href="media-manager.html" class="menu-item">
+                        <i class="icon-media"></i>
+                        <span>Media Manager</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">SETTINGS</div>
+                    <a href="website-settings.html" class="menu-item">
+                        <i class="icon-settings"></i>
+                        <span>Website Settings</span>
+                    </a>
+                    <a href="profile.html" class="menu-item">
+                        <i class="icon-profile"></i>
+                        <span>Profile</span>
+                    </a>
+                </div>
+
+                <a href="#" class="menu-item logout" onclick="logout()">
+                    <i class="icon-logout"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                </div>
+                <div class="header-center">
+                    <input type="text" placeholder="Search here..." class="search-input">
+                </div>
+                <div class="header-right">
+                    <div class="notification-icon">
+                        <i class="icon-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img src="images/avatar.jpg" alt="Admin">
+                        </div>
+                        <div class="user-info">
+                            <p class="user-name">Super Admin</p>
+                            <p class="user-role">Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <div class="page-header">
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p><a href="#">Home</a> / <span>Dashboard</span></p>
+                    </div>
+                    <div class="date-range">
+                        <button class="date-picker">📅 May 15 - Jun 15, 2025</button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card total-blogs">
+                        <div class="stat-header">
+                            <h3>Total Blogs</h3>
+                            <i class="icon-info"></i>
+                        </div>
+                        <div class="stat-number">156</div>
+                        <div class="stat-change positive">
+                            <i class="icon-up"></i>
+                            12.5% from last month
+                        </div>
+                    </div>
+
+                    <div class="stat-card published-blogs">
+                        <div class="stat-header">
+                            <h3>Published Blogs</h3>
+                            <i class="icon-info"></i>
+                        </div>
+                        <div class="stat-number">134</div>
+                        <div class="stat-change positive">
+                            <i class="icon-up"></i>
+                            15.8% from last month
+                        </div>
+                    </div>
+
+                    <div class="stat-card draft-blogs">
+                        <div class="stat-header">
+                            <h3>Draft Blogs</h3>
+                            <i class="icon-info"></i>
+                        </div>
+                        <div class="stat-number">22</div>
+                        <div class="stat-change positive">
+                            <i class="icon-up"></i>
+                            8.2% from last month
+                        </div>
+                    </div>
+
+                    <div class="stat-card total-views">
+                        <div class="stat-header">
+                            <h3>Total Views</h3>
+                            <i class="icon-info"></i>
+                        </div>
+                        <div class="stat-number">15,245</div>
+                        <div class="stat-change positive">
+                            <i class="icon-up"></i>
+                            18.7% from last month
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Blog Views Overview</h3>
+                            <button class="btn-secondary">Last 30 Days ▼</button>
+                        </div>
+                        <div class="chart">
+                            <canvas id="viewsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-container category-chart">
+                        <div class="chart-header">
+                            <h3>Blogs by Category</h3>
+                        </div>
+                        <div class="pie-chart">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                        <div class="category-legend">
+                            <div class="legend-item">
+                                <span class="color-box" style="background: #FF6B6B;"></span>
+                                <span>News & Sports - 45 (28.8%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="color-box" style="background: #4ECDC4;"></span>
+                                <span>Health Tips - 38 (24.4%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="color-box" style="background: #95E1D3;"></span>
+                                <span>Treatments - 32 (20.5%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="color-box" style="background: #F38181;"></span>
+                                <span>Patient Care - 20 (12.8%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="color-box" style="background: #AAF683;"></span>
+                                <span>General - 16 (10.3%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Blogs & Activities -->
+                <div class="recent-section">
+                    <div class="recent-blogs">
+                        <div class="section-header">
+                            <h3>Recent Blogs</h3>
+                            <a href="all-blogs.html" class="link-view-all">View All →</a>
+                        </div>
+                        <div class="blog-list">
+                            <div class="blog-item">
+                                <img src="images/blog-1.jpg" alt="Blog">
+                                <div class="blog-info">
+                                    <h4>Warning Signs of a Stroke You Should Never Ignore</h4>
+                                    <p><span class="category-badge">Heart & Spine</span> <span class="status-badge published">Published</span></p>
+                                    <p class="blog-date">Jun 14, 2025</p>
+                                </div>
+                            </div>
+                            <div class="blog-item">
+                                <img src="images/blog-2.jpg" alt="Blog">
+                                <div class="blog-info">
+                                    <h4>Advanced Spine Surgery: What You Need to Know</h4>
+                                    <p><span class="category-badge">Treatments</span> <span class="status-badge published">Published</span></p>
+                                    <p class="blog-date">Jun 12, 2025</p>
+                                </div>
+                            </div>
+                            <div class="blog-item">
+                                <img src="images/blog-3.jpg" alt="Blog">
+                                <div class="blog-info">
+                                    <h4>10 Brain Health Tips for a Better Life</h4>
+                                    <p><span class="category-badge">Health Tips</span> <span class="status-badge draft">Draft</span></p>
+                                    <p class="blog-date">Jun 10, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activities">
+                        <div class="section-header">
+                            <h3>Recent Activities</h3>
+                            <a href="#" class="link-view-all">View All →</a>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon blog-published">📝</div>
+                                <div class="activity-content">
+                                    <p><strong>Blog published</strong></p>
+                                    <p class="activity-title">Warning Signs of a Stroke You Should Never Ignore</p>
+                                    <p class="activity-time">1 month ago</p>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon blog-created">✨</div>
+                                <div class="activity-content">
+                                    <p><strong>New blog created</strong></p>
+                                    <p class="activity-title">Advanced Spine Surgery: What You Need to Know</p>
+                                    <p class="activity-time">15 mins ago</p>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon blog-updated">🔄</div>
+                                <div class="activity-content">
+                                    <p><strong>Blog updated</strong></p>
+                                    <p class="activity-title">10 Brain Health Tips for a Better Life</p>
+                                    <p class="activity-time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon category-added">📂</div>
+                                <div class="activity-content">
+                                    <p><strong>Category added</strong></p>
+                                    <p class="activity-title">New category "Health Tips" added</p>
+                                    <p class="activity-time">3 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
