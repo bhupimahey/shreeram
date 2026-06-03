@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Blog - Shree Ram Super Speciality Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/add-blog.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="hospital-logo-small">
+                    <img src="images/logo-small.png" alt="Logo">
+                </div>
+                <h3>Shree Ram<br><small>Super Speciality Hospital</small></h3>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="menu-section">
+                    <a href="dashboard.html" class="menu-item">
+                        <i class="icon-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">BLOG MANAGEMENT</div>
+                    <a href="all-blogs.html" class="menu-item">
+                        <i class="icon-blogs"></i>
+                        <span>All Blogs</span>
+                    </a>
+                    <a href="add-blog.html" class="menu-item active">
+                        <i class="icon-add"></i>
+                        <span>Add New Blog</span>
+                    </a>
+                    <a href="categories.html" class="menu-item">
+                        <i class="icon-category"></i>
+                        <span>Categories</span>
+                    </a>
+                    <a href="tags.html" class="menu-item">
+                        <i class="icon-tag"></i>
+                        <span>Tags</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">MEDIA</div>
+                    <a href="media-manager.html" class="menu-item">
+                        <i class="icon-media"></i>
+                        <span>Media Manager</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">SETTINGS</div>
+                    <a href="website-settings.html" class="menu-item">
+                        <i class="icon-settings"></i>
+                        <span>Website Settings</span>
+                    </a>
+                    <a href="profile.html" class="menu-item">
+                        <i class="icon-profile"></i>
+                        <span>Profile</span>
+                    </a>
+                </div>
+
+                <a href="#" class="menu-item logout" onclick="logout()">
+                    <i class="icon-logout"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                </div>
+                <div class="header-center">
+                    <input type="text" placeholder="Search here..." class="search-input">
+                </div>
+                <div class="header-right">
+                    <div class="notification-icon">
+                        <i class="icon-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img src="images/avatar.jpg" alt="Admin">
+                        </div>
+                        <div class="user-info">
+                            <p class="user-name">Super Admin</p>
+                            <p class="user-role">Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="dashboard-content">
+                <div class="page-header">
+                    <div>
+                        <h1>Add New Blog</h1>
+                        <p><a href="dashboard.html">Home</a> / <a href="all-blogs.html">All Blogs</a> / <span>Add New Blog</span></p>
+                    </div>
+                </div>
+
+                <!-- Blog Form -->
+                <div class="blog-form-container">
+                    <form id="addBlogForm" class="blog-form">
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="blogTitle">Blog Title *</label>
+                                <input type="text" id="blogTitle" name="title" placeholder="Enter blog title" required>
+                                <small class="char-count">0/100 characters</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="blogCategory">Category *</label>
+                                <select id="blogCategory" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="heart-spine">Heart & Spine</option>
+                                    <option value="treatments">Treatments</option>
+                                    <option value="health-tips">Health Tips</option>
+                                    <option value="patient-care">Patient Care</option>
+                                    <option value="general">General</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="blogTags">Tags</label>
+                                <input type="text" id="blogTags" name="tags" placeholder="Add tags separated by comma">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="featuredImage">Featured Image</label>
+                                <div class="file-upload">
+                                    <input type="file" id="featuredImage" name="image" accept="image/*">
+                                    <label for="featuredImage" class="file-upload-label">
+                                        <i>📷</i>
+                                        <span>Click to upload image</span>
+                                    </label>
+                                    <div id="imagePreview" class="image-preview" style="display:none;">
+                                        <img id="previewImg" src="" alt="Preview">
+                                        <button type="button" class="btn-remove" onclick="removeImage()">✕</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="publishDate">Publish Date</label>
+                                <input type="date" id="publishDate" name="publish_date">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="blogExcerpt">Excerpt</label>
+                                <textarea id="blogExcerpt" name="excerpt" rows="3" placeholder="Write a short excerpt (140 characters max)" maxlength="140"></textarea>
+                                <small class="char-count">0/140 characters</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="blogContent">Content *</label>
+                                <div class="editor-toolbar">
+                                    <button type="button" class="toolbar-btn" onclick="formatText('bold')" title="Bold">
+                                        <strong>B</strong>
+                                    </button>
+                                    <button type="button" class="toolbar-btn" onclick="formatText('italic')" title="Italic">
+                                        <i>I</i>
+                                    </button>
+                                    <button type="button" class="toolbar-btn" onclick="formatText('underline')" title="Underline">
+                                        <u>U</u>
+                                    </button>
+                                    <div class="toolbar-divider"></div>
+                                    <button type="button" class="toolbar-btn" onclick="formatText('insertUnorderedList')" title="Bullet List">
+                                        • List
+                                    </button>
+                                    <button type="button" class="toolbar-btn" onclick="formatText('insertOrderedList')" title="Numbered List">
+                                        1. List
+                                    </button>
+                                    <button type="button" class="toolbar-btn" onclick="formatText('createLink')" title="Link">
+                                        🔗 Link
+                                    </button>
+                                </div>
+                                <div id="blogContent" name="content" class="editor-content" contenteditable="true" placeholder="Write your blog content here..."></div>
+                                <small class="char-count">0 characters</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="metaTitle">Meta Title (SEO)</label>
+                                <input type="text" id="metaTitle" name="meta_title" placeholder="SEO Meta Title" maxlength="60">
+                                <small class="char-count">0/60 characters</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="metaDescription">Meta Description (SEO)</label>
+                                <textarea id="metaDescription" name="meta_description" rows="2" placeholder="SEO Meta Description" maxlength="160"></textarea>
+                                <small class="char-count">0/160 characters</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="enableComments" name="comments" checked>
+                                    <label for="enableComments">Enable comments on this blog</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="enableSharing" name="sharing" checked>
+                                    <label for="enableSharing">Enable social sharing</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="saveDraft()">💾 Save as Draft</button>
+                            <button type="button" class="btn-secondary" onclick="preview()">👁️ Preview</button>
+                            <button type="submit" class="btn-primary">✓ Publish Blog</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/add-blog.js"></script>
+</body>
+</html>
